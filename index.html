@@ -1,1 +1,1188 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgPractices&Domains - Integrative Agricultural Modelling System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #EF5350;
+            --secondary: #FF7043;
+            --body: #F8F3F0;
+            --text: #1D1D1B;
+            --secondary-dark: #9C3A26;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--body);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(239, 83, 80, 0.3);
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="crops" width="15" height="15" patternUnits="userSpaceOnUse"><path d="M7.5 2L10 7H5L7.5 2ZM7.5 13L10 8H5L7.5 13Z" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23crops)"/></svg>');
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: var(--white);
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Partners Section */
+        .partners {
+            background: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .partners h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .logo-item {
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-item img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Overview Section */
+        .overview {
+            background: var(--body);
+            padding: 4rem 0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .content-text h2 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(239, 83, 80, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Platform Section */
+        .platform {
+            background: var(--white);
+            padding: 4rem 0;
+        }
+
+        .platform h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .platform-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .platform-text {
+            background: var(--body);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(239, 83, 80, 0.1);
+        }
+
+        .platform-text h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .platform-features {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .feature-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 2px 10px rgba(239, 83, 80, 0.1);
+        }
+
+        .feature-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Models Section */
+        .models {
+            background: var(--body);
+            padding: 4rem 0;
+        }
+
+        .models h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .model-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 20px rgba(239, 83, 80, 0.1);
+        }
+
+        .model-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .model-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+
+        .model-card h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Countries Section */
+        .countries {
+            background: var(--white);
+            padding: 4rem 0;
+        }
+
+        .countries h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .countries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .country-card {
+            background: var(--body);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(239, 83, 80, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .country-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .country-flag {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .country-card h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .country-card p {
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        /* Outcomes Section */
+        .outcomes {
+            background: var(--body);
+            padding: 4rem 0;
+        }
+
+        .outcomes h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .outcome-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 4px 20px rgba(239, 83, 80, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .outcome-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .outcome-card h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .outcome-card p {
+            color: var(--text);
+        }
+
+        /* Partners Grid */
+        .partners-grid {
+            background: var(--white);
+            padding: 4rem 0;
+        }
+
+        .partners-grid h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .partners-institutions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .partner-card {
+            background: var(--body);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .partner-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .partner-card h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .partner-card p {
+            color: var(--text);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Future Directions */
+        .future {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .future-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .future h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .future-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .future-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .future-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .future-item h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary-dark);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p {
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .sdg-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .sdg-tag {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 1rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .content-grid,
+            .platform-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logos {
+                gap: 2rem;
+            }
+
+            .logo-item {
+                height: 60px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav {
+                padding: 0 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .countries-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .models-grid,
+            .outcomes-grid,
+            .partners-institutions,
+            .future-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .countries-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 3rem 0;
+            }
+
+            .overview,
+            .platform,
+            .models,
+            .countries,
+            .outcomes,
+            .partners-grid,
+            .future {
+                padding: 3rem 0;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Scroll Animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Agricultural themed animations */
+        @keyframes grow {
+            0% { transform: scale(0.8) rotate(-5deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .model-icon:hover {
+            animation: grow 0.8s ease-in-out;
+        }
+
+        /* Data simulation animation */
+        @keyframes dataSimulation {
+            0% { opacity: 0.5; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(-10px); }
+            100% { opacity: 0.5; transform: translateY(0); }
+        }
+
+        .platform-text:hover {
+            animation: dataSimulation 2s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="logo">AgPractices&Domains</a>
+            <ul class="nav-links">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#platform">Platform</a></li>
+                <li><a href="#models">Models</a></li>
+                <li><a href="#outcomes">Outcomes</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content fade-in">
+            <h1>AgPractices&Domains</h1>
+            <div class="subtitle">Integrative Agricultural Modelling System</div>
+            <p>Supporting agricultural researchers in Southeast Asia with web-based crop and disease risk models for sustainable rice-based cropping systems and climate-resilient farming practices</p>
+            <a href="#overview" class="cta-button">Explore Platform</a>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners">
+        <div class="container">
+            <h2 class="scroll-reveal">Supported By</h2>
+            <div class="logos scroll-reveal">
+                <div class="logo-item">
+                    <img src="images/logos/tein-logo.png" alt="TEIN Cooperation Center" />
+                </div>
+                <div class="logo-item">
+                    <img src="images/logos/asia-connect-logo.png" alt="Asi@Connect" />
+                </div>
+                <div class="logo-item">
+                    <img src="images/logos/eu-logo.png" alt="European Union" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="overview">
+        <div class="container">
+            <div class="content-grid">
+                <div class="content-text scroll-reveal">
+                    <h2>Project Overview</h2>
+                    <p>AgPractices&Domains improves food security and builds climate resilience in Southeast Asia by supporting agricultural researchers in Myanmar and the Philippines with advanced crop and disease risk modeling capabilities.</p>
+                    <p>Our web-based application integrates sophisticated models to simulate yield responses under different management and climate scenarios, enabling researchers to identify pest and disease risks through geospatial analytics and data-driven decision making.</p>
+                </div>
+                <div class="stats-grid scroll-reveal">
+                    <div class="stat-card">
+                        <span class="stat-number">92</span>
+                        <span class="stat-label">Researchers Trained</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">53%</span>
+                        <span class="stat-label">Women Participants</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">22</span>
+                        <span class="stat-label">NREN Institutions</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Partner Organizations</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Section -->
+    <section id="platform" class="platform">
+        <div class="container">
+            <h2 class="scroll-reveal">Web-Based Modelling Platform</h2>
+            <div class="platform-content">
+                <div class="platform-text scroll-reveal">
+                    <h3>🌾 Integrated Crop Modelling</h3>
+                    <p>Our platform developed through three phases: Shiny R prototyping, expansion to Philippines/Myanmar data, and culmination in a React JS/MariaDB/Node JS system for rice yield and disease modeling with advanced visualization capabilities.</p>
+                    <p>The system enables users to simulate agricultural scenarios, assess climate risks, and make informed decisions for sustainable farming practices across diverse Southeast Asian contexts.</p>
+                </div>
+                <div class="platform-features scroll-reveal">
+                    <div class="feature-item">
+                        <h4>📊 Yield Simulation</h4>
+                        <p>Comprehensive rice yield modeling under various management and climate scenarios for informed decision-making.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>🦠 Disease Risk Assessment</h4>
+                        <p>Advanced disease risk modeling using geospatial analytics to identify and mitigate agricultural threats.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>🗺️ Geospatial Analytics</h4>
+                        <p>Interactive mapping and spatial analysis tools for regional agricultural risk assessment and planning.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>📈 Data Visualization</h4>
+                        <p>User-friendly interface for uploading, analyzing, and visualizing agricultural data at regional scale.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Models Section -->
+    <section id="models" class="models">
+        <div class="container">
+            <h2 class="scroll-reveal">Integrated Modelling Framework</h2>
+            <div class="models-grid">
+                <div class="model-card scroll-reveal">
+                    <div class="model-icon">🌾</div>
+                    <h3>ORYZA Model</h3>
+                    <p>Advanced rice growth simulation model calibrated with site-specific data from Myanmar and Philippines for accurate yield predictions under local conditions.</p>
+                </div>
+                <div class="model-card scroll-reveal">
+                    <div class="model-icon">🦠</div>
+                    <h3>EPIRICE Model</h3>
+                    <p>Disease epidemiology model for rice systems, providing pest and disease risk assessments based on climate and management factors.</p>
+                </div>
+                <div class="model-card scroll-reveal">
+                    <div class="model-icon">🌡️</div>
+                    <h3>Climate Integration</h3>
+                    <p>Historical climate data integration for model validation and future scenario analysis supporting adaptation planning.</p>
+                </div>
+                <div class="model-card scroll-reveal">
+                    <div class="model-icon">📊</div>
+                    <h3>Risk Analytics</h3>
+                    <p>Comprehensive risk assessment framework combining crop modeling with disease prediction for integrated farm management.</p>
+                </div>
+                <div class="model-card scroll-reveal">
+                    <div class="model-icon">🎯</div>
+                    <h3>Decision Support</h3>
+                    <p>Targeted decision-making tools for sustainable agriculture practices and climate-resilient farming strategies.</p>
+                </div>
+                <div class="model-card scroll-reveal">
+                    <div class="model-icon">🔗</div>
+                    <h3>Platform Integration</h3>
+                    <p>Seamless integration of multiple models within a unified web-based platform for comprehensive agricultural analysis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countries Section -->
+    <section class="countries">
+        <div class="container">
+            <h2 class="scroll-reveal">Focus Countries</h2>
+            <div class="countries-grid">
+                <div class="country-card scroll-reveal">
+                    <div class="country-flag">🇦🇺</div>
+                    <h3>Australia</h3>
+                    <p>University of Southern Queensland (USQ) - Lead technical development and coordination</p>
+                </div>
+                <div class="country-card scroll-reveal">
+                    <div class="country-flag">🇵🇭</div>
+                    <h3>Philippines</h3>
+                    <p>SEARCA & UPLBFI - Regional research coordination and field validation</p>
+                </div>
+                <div class="country-card scroll-reveal">
+                    <div class="country-flag">🇲🇲</div>
+                    <h3>Myanmar</h3>
+                    <p>University of Computer Studies, Yangon - Local implementation and capacity building</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Grid -->
+    <section class="partners-grid">
+        <div class="container">
+            <h2 class="scroll-reveal">Partner Organizations</h2>
+            <div class="partners-institutions">
+                <div class="partner-card scroll-reveal">
+                    <h3>🇦🇺 University of Southern Queensland</h3>
+                    <p>Lead institution providing technical expertise in agricultural modeling and platform development</p>
+                </div>
+                <div class="partner-card scroll-reveal">
+                    <h3>🇵🇭 SEARCA</h3>
+                    <p>Southeast Asian Regional Center for Graduate Study and Research in Agriculture</p>
+                </div>
+                <div class="partner-card scroll-reveal">
+                    <h3>🇵🇭 UPLB Foundation</h3>
+                    <p>University of the Philippines Los Baños Foundation Inc. - Research and validation partner</p>
+                </div>
+                <div class="partner-card scroll-reveal">
+                    <h3>🇲🇲 UCSY</h3>
+                    <p>University of Computer Studies, Yangon - Local implementation and technical support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outcomes Section -->
+    <section id="outcomes" class="outcomes">
+        <div class="container">
+            <h2 class="scroll-reveal">Key Outcomes</h2>
+            <div class="outcomes-grid">
+                <div class="outcome-card scroll-reveal">
+                    <h3>💻 Functional Platform Deployed</h3>
+                    <p>Fully functional prototype created with simulation modules for yield and disease risk, including user interface for uploading and analyzing agricultural data at regional scale.</p>
+                </div>
+                <div class="outcome-card scroll-reveal">
+                    <h3>👩‍🔬 Researchers Trained</h3>
+                    <p>92 participants (53% women) across Myanmar and Philippines trained on modeling techniques and platform usage for practical agricultural decision-making.</p>
+                </div>
+                <div class="outcome-card scroll-reveal">
+                    <h3>🎯 Model Calibration Completed</h3>
+                    <p>Site-specific calibration for ORYZA and EPIRICE models improved reliability in assessing climate and disease risks under local conditions.</p>
+                </div>
+                <div class="outcome-card scroll-reveal">
+                    <h3>🤝 Cross-Border Collaboration</h3>
+                    <p>Platform facilitated research coordination among four partner institutions, enhancing data sharing, joint training, and long-term cooperation on agricultural research.</p>
+                </div>
+                <div class="outcome-card scroll-reveal">
+                    <h3>📚 Knowledge Products Created</h3>
+                    <p>Training materials, sustainability strategy, and data outputs packaged for broader dissemination with peer-reviewed publication on modeling framework in preparation.</p>
+                </div>
+                <div class="outcome-card scroll-reveal">
+                    <h3>🔬 Research Foundation Established</h3>
+                    <p>Created foundation for regional digital agricultural knowledge platform supporting sustainable rice-based cropping systems across Southeast Asia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Directions -->
+    <section class="future">
+        <div class="container">
+            <div class="future-content scroll-reveal">
+                <h2>Future Directions</h2>
+                <p>Expanding the AgPractices&Domains platform to support broader agricultural research and sustainable farming practices across Southeast Asia and beyond.</p>
+                
+                <div class="future-grid">
+                    <div class="future-item">
+                        <h3>🌽 Crop Expansion</h3>
+                        <p>Extend modeling platform to support other stress-prone cropping systems including maize and vegetables across Southeast Asia.</p>
+                    </div>
+                    <div class="future-item">
+                        <h3>🔗 SEARCA Integration</h3>
+                        <p>Incorporate tool into SEARCA's regional digital platform for agricultural data and decision support with continuous updates.</p>
+                    </div>
+                    <div class="future-item">
+                        <h3>🤖 AI-Powered Prediction</h3>
+                        <p>Develop machine learning algorithms for near-real-time prediction of pest and disease outbreaks based on field sensor inputs.</p>
+                    </div>
+                    <div class="future-item">
+                        <h3>🎓 Curriculum Integration</h3>
+                        <p>Embed platform in partner universities' agriculture and ICT courses, ensuring sustainability through education and research.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Project Information</h3>
+                    <p>AgPractices&Domains is funded under the 4th Call of the Asi@Connect program, supported by the European Union and implemented through TEIN Cooperation Center, focusing on agricultural modeling and food security.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Research Impact</h3>
+                    <p>Supporting sustainable agriculture and climate resilience through innovative web-based crop and disease modeling platforms for researchers across Southeast Asia.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Sustainable Development Goals</h3>
+                    <div class="sdg-tags">
+                        <span class="sdg-tag">SDG 2: Zero Hunger</span>
+                        <span class="sdg-tag">SDG 13: Climate Action</span>
+                        <span class="sdg-tag">SDG 17: Partnerships</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AgPractices&Domains Project. Funded by the European Union through Asi@Connect.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all scroll-reveal elements
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navLinks.style.display = 'none';
+                }
+            });
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                navLinks.style.display = 'flex';
+            } else {
+                navLinks.style.display = 'none';
+            }
+        });
+
+        // Add loading animation to stat numbers
+        const animateNumbers = () => {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const text = stat.textContent;
+                const hasPercent = text.includes('%');
+                const target = parseInt(text.replace('%', ''));
+                let current = 0;
+                const increment = target / 30;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = hasPercent ? target + '%' : target;
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = hasPercent ? Math.floor(current) + '%' : Math.floor(current);
+                    }
+                }, 50);
+            });
+        };
+
+        // Trigger number animation when stats section comes into view
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateNumbers();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsGrid = document.querySelector('.stats-grid');
+        if (statsGrid) {
+            statsObserver.observe(statsGrid);
+        }
+
+        // Add staggered animation to cards
+        const addStaggeredAnimation = () => {
+            const cardContainers = [
+                '.models-grid .model-card',
+                '.outcomes-grid .outcome-card',
+                '.partners-institutions .partner-card',
+                '.countries-grid .country-card'
+            ];
+
+            cardContainers.forEach(selector => {
+                const cards = document.querySelectorAll(selector);
+                cards.forEach((card, index) => {
+                    card.style.animationDelay = `${index * 0.1}s`;
+                });
+            });
+        };
+
+        // Initialize staggered animations when page loads
+        document.addEventListener('DOMContentLoaded', addStaggeredAnimation);
+
+        // Add agricultural-themed hover effects
+        document.querySelectorAll('.model-icon').forEach(icon => {
+            icon.addEventListener('mouseenter', () => {
+                icon.style.transform = 'scale(1.3) rotate(15deg)';
+                icon.style.boxShadow = '0 8px 25px rgba(239, 83, 80, 0.4)';
+            });
+            
+            icon.addEventListener('mouseleave', () => {
+                icon.style.transform = 'scale(1) rotate(0deg)';
+                icon.style.boxShadow = 'none';
+            });
+        });
+
+        // Add crop growth simulation effect
+        const simulateCropGrowth = () => {
+            const heroBackground = document.querySelector('.hero::before');
+            let growthStage = 0;
+            
+            setInterval(() => {
+                growthStage = (growthStage + 1) % 4;
+                // Simulate different growth stages through opacity changes
+                const opacity = 0.05 + (growthStage * 0.02);
+                document.documentElement.style.setProperty('--crop-opacity', opacity);
+            }, 2000);
+        };
+
+        // Platform demonstration simulation
+        const simulatePlatformData = () => {
+            const platformText = document.querySelector('.platform-text');
+            if (platformText) {
+                setInterval(() => {
+                    platformText.style.backgroundColor = 'rgba(239, 83, 80, 0.1)';
+                    setTimeout(() => {
+                        platformText.style.backgroundColor = '';
+                    }, 1000);
+                }, 5000);
+            }
+        };
+
+        // Initialize simulations
+        document.addEventListener('DOMContentLoaded', () => {
+            simulateCropGrowth();
+            simulatePlatformData();
+        });
+
+        // Add rice field pattern animation
+        const createRicePattern = () => {
+            const hero = document.querySelector('.hero');
+            for (let i = 0; i < 15; i++) {
+                const rice = document.createElement('div');
+                rice.innerHTML = '🌾';
+                rice.style.cssText = `
+                    position: absolute;
+                    font-size: 1.5rem;
+                    opacity: 0.1;
+                    animation: sway ${2 + Math.random() * 3}s ease-in-out infinite;
+                    top: ${20 + Math.random() * 60}%;
+                    left: ${Math.random() * 100}%;
+                    z-index: 1;
+                `;
+                hero.appendChild(rice);
+            }
+        };
+
+        // Add CSS animation for swaying rice
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sway {
+                0%, 100% { transform: rotate(-2deg) translateX(0px); }
+                50% { transform: rotate(2deg) translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize rice pattern
+        document.addEventListener('DOMContentLoaded', createRicePattern);
+    </script>
+</body>
+</html>
